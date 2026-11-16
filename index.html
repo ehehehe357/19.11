@@ -267,9 +267,9 @@
     <div class="controls">
         <button id="spinBtn">QUAY SỐ</button>
     </div>
-    <div class="status-text" id="statusText">Còn lại: 10 / 10 phần quà</div>
+    <div class="status-text" id="statusText">Còn lại: 13 / 13 phần quà</div>
 
-    <button id="resetBtn" title="Đặt lại toàn bộ 10 số">Đặt lại vòng quay</button>
+    <button id="resetBtn" title="Đặt lại toàn bộ 13 số">Đặt lại vòng quay</button>
 
     <!-- Màn hình Overlay kết quả -->
     <div class="overlay" id="overlay">
@@ -292,18 +292,21 @@
     </div>
 
     <script>
-        // Danh sách 10 món quà liên kết với thư mục S (định dạng ảnh .jpg hoặc .png)
+        // Danh sách 13 món quà liên kết với thư mục S (đổi .jpg thành .png nếu ảnh của bạn là png)
         const GIFTS = {
-            1:  { name: "Món quà số 01", image: "S/1.png" },
-            2:  { name: "Món quà số 02", image: "S/2.jpg" },
-            3:  { name: "Món quà số 03", image: "S/3.jpg" },
-            4:  { name: "Món quà số 04", image: "S/4.jpeg" },
-            5:  { name: "Món quà số 05", image: "S/5.jpg" },
-            6:  { name: "Món quà số 06", image: "S/6.jpg" },
-            7:  { name: "Món quà số 07", image: "S/7.jpg" },
-            8:  { name: "Món quà số 08", image: "S/8.jpg" },
-            9:  { name: "Món quà số 09", image: "S/9.jpg" },
-            10: { name: "Món quà số 10", image: "S/10.jpg" }
+            1:  { name: "Món quà số 01", image: "S/01.jpg" },
+            2:  { name: "Món quà số 02", image: "S/02.jpg" },
+            3:  { name: "Món quà số 03", image: "S/03.jpg" },
+            4:  { name: "Món quà số 04", image: "S/04.jpg" },
+            5:  { name: "Món quà số 05", image: "S/05.jpg" },
+            6:  { name: "Món quà số 06", image: "S/06.jpg" },
+            7:  { name: "Món quà số 07", image: "S/07.jpg" },
+            8:  { name: "Món quà số 08", image: "S/08.jpg" },
+            9:  { name: "Món quà số 09", image: "S/09.jpg" },
+            10: { name: "Món quà số 10", image: "S/10.jpg" },
+            11: { name: "Món quà số 11", image: "S/11.jpg" },
+            12: { name: "Món quà số 12", image: "S/12.jpg" },
+            13: { name: "Món quà số 13", image: "S/13.jpg" }
         };
 
         // Hàm hỗ trợ thêm số 0 đằng trước cho các số từ 1-9
@@ -311,11 +314,11 @@
             return num < 10 ? '0' + num : num;
         }
 
-        let availableNumbers = Array.from({ length: 10 }, (_, i) => i + 1);
+        let availableNumbers = Array.from({ length: 13 }, (_, i) => i + 1);
         let currentWinner = null;
         let isSpinning = false;
         let isBreaking = false;
-        let duration = 1600; // Thời gian quay nhanh hơn (khoảng 2/3 so với trước)
+        let duration = 1600;
 
         const numberDisplay = document.getElementById('numberDisplay');
         const spinRing = document.getElementById('spinRing');
@@ -332,7 +335,7 @@
         const closeGiftBtn = document.getElementById('closeGiftBtn');
 
         function updateStatus() {
-            statusText.textContent = `Còn lại: ${availableNumbers.length} / 10 phần quà`;
+            statusText.textContent = `Còn lại: ${availableNumbers.length} / 13 phần quà`;
             if (availableNumbers.length === 0) {
                 spinBtn.disabled = true;
                 spinBtn.textContent = "ĐÃ HẾT QUÀ";
@@ -412,14 +415,14 @@
 
         // Nút đặt lại từ đầu
         resetBtn.addEventListener('click', () => {
-            if (confirm("Bạn có chắc muốn đặt lại toàn bộ 10 số để quay lại từ đầu?")) {
-                availableNumbers = Array.from({ length: 10 }, (_, i) => i + 1);
+            if (confirm("Bạn có chắc muốn đặt lại toàn bộ 13 số để quay lại từ đầu?")) {
+                availableNumbers = Array.from({ length: 13 }, (_, i) => i + 1);
                 numberDisplay.textContent = "01";
                 updateStatus();
             }
         });
 
-        // Hiệu ứng phao hoa hạt nhỏ khi vỡ hình tròn
+        // Hiệu ứng pháo hoa hạt nhỏ khi vỡ hình tròn
         const canvas = document.getElementById('explosionCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
